@@ -29,11 +29,11 @@ def callback_function(future):
     print('Callback with the following result', future.result())
     print('Callback with the following result')
 
-
-img_subjects_path = ''
-img_target_path = ''
+base_path = os.getcwd()
+img_subjects_path = img = os.path.join(base_path, "images_subject")
+img_target_path = os.path.join(base_path, "images_target")
 cwd = os.getcwd()
-print(cwd)
+print(img_target_path, img_subjects_path)
 
 with ThreadPoolExecutor(max_workers=2) as executor: #change max_workers to 2 and see the results
     future = executor.submit(wait_function, 'first')
