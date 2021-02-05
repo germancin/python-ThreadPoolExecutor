@@ -4,20 +4,22 @@ import random
 import multiprocessing
 
 
-def task():
-    print("Executing our Task")
-    result = 0
-    i = 0
-    for i in range(10):
-        result = result + i
-    print("I: {}".format(result))
-    print("Task Executed {}".format(threading.current_thread()))
+def task(n):
+    print(f"Processing {format(n)}")
+
 
 def main():
     executor = ThreadPoolExecutor(max_workers=multiprocessing.cpu_count())
     for i in range(multiprocessing.cpu_count()):
-       task_exe = executor.submit(task)
-       print(f'Task# {i}')
+        task_exe = executor.submit(task)
+        print(f'Task# {i}')
+
+    with ThreadPoolExecutor(max_workers=multiprocessing.cpu_count()) as executor:
+        for i in range(multiprocessing.cpu_count()):
+            future = executor.submit(task, (2))
+            future = executor.submit(task, (3))
+            future = executor.submit(task, (4))
+
 
 if __name__ == '__main__':
     main()
