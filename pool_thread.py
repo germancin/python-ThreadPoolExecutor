@@ -10,11 +10,8 @@ def task(n):
 
 def main():
     executor = ThreadPoolExecutor(max_workers=multiprocessing.cpu_count())
-    for i in range(multiprocessing.cpu_count()):
-        task_exe = executor.submit(task)
-        print(f'Task# {i}')
-
     with ThreadPoolExecutor(max_workers=multiprocessing.cpu_count()) as executor:
+        i = 1
         for i in range(multiprocessing.cpu_count()):
             task_exe = executor.submit(task (random.randint(1,4)))
 
