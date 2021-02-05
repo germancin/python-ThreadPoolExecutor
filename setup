@@ -1,5 +1,5 @@
-pip3 install numpy as np
-pip3 install multiprocessing
+pip3 install numpy as np &&
+pip3 install multiprocessing &&
 pip3 install time
 
 sleep 1
