@@ -4,8 +4,10 @@ import time
 import random
 
 def wait_function(x, y):
+    start = time.time()
     time.sleep(random.randint(1, 5))
-    print(f"Task( {x} multiply {y}, ) completed")
+    print(f"Task( multiply {x} times(*) {y}, ) completed")
+    print(f"Execution time: {time.time() - start}")
     return x * y
 
 def callback_function(future):
