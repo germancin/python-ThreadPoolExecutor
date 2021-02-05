@@ -17,7 +17,7 @@ def main():
     executor = ThreadPoolExecutor(max_workers=multiprocessing.cpu_count())
     for i in range(multiprocessing.cpu_count()):
        task_exe = executor.submit(task)
-       print(task_exe)
+       # print(task_exe)
 
 if __name__ == '__main__':
     main()
