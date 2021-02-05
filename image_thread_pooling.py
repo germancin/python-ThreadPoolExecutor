@@ -1,5 +1,4 @@
 from concurrent.futures import ThreadPoolExecutor
-import cv2
 import time
 import os
 import random
