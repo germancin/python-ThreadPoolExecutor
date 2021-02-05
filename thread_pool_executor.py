@@ -9,7 +9,6 @@ def wait_function(x, y):
 
 def callback_function(future):
     print('Callback with the following result', future.result())
-    time.sleep(10)
 
 with ThreadPoolExecutor(max_workers=10) as executor: #change max_workers to 2 and see the results
     future = executor.submit(wait_function, 1, 1)
