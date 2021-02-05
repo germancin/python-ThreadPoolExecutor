@@ -3,14 +3,14 @@ import time
 import random
 
 def wait_function(x, y):
-    time.sleep(random.randint(1, 5))
+    time.sleep(random.randint(1, 10))
     print(f"Task( {x} multiply {y}, ) completed")
     return x * y
 
 def callback_function(future):
     print('Callback with the following result', future.result())
 
-with ThreadPoolExecutor(max_workers=20) as executor: #change max_workers to 2 and see the results
+with ThreadPoolExecutor(max_workers=32) as executor: #change max_workers to 2 and see the results
     future = executor.submit(wait_function, 1, 1)
     future.add_done_callback(callback_function)
 
