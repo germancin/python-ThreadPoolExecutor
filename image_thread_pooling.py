@@ -4,7 +4,6 @@ import os
 import random
 
 def fibo(n):
-    numbers = []
     a = 0
     b = 1
     total_sum = 0
@@ -16,17 +15,15 @@ def fibo(n):
         a = b
         b = total_sum
         total_sum = a + b
-        numbers.append(total_sum)
+
+    return total_sum
 
 def wait_function():
     start = time.time()
-    fibo(random.randint(99999, 999999))
+    total_sum = fibo(random.randint(99999, 999999))
     time.sleep(random.randint(1, 5))
-    x = random.randint(99999, 999999999999999999)
-    y = random.randint(99999, 999999999999999999)
-    total = x * y
-    print(f"Task( multiply {x} times(*) {y}, [{total}]) Execution time: {time.time() - start} completed")
-    return total
+    print(f"Fibo of {total_sum}:  Execution time: {time.time() - start}   completed")
+    return total_sum
 
 def callback_function(future):
     print('Callback with the following result', future.result())
