@@ -29,6 +29,12 @@ def callback_function(future):
     print('Callback with the following result', future.result())
     print('Callback with the following result')
 
+
+img_subjects_path = ''
+img_target_path = ''
+cwd = os.getcwd()
+print(cwd)
+
 with ThreadPoolExecutor(max_workers=2) as executor: #change max_workers to 2 and see the results
     future = executor.submit(wait_function, 'first')
     future.add_done_callback(callback_function)
