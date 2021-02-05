@@ -31,7 +31,7 @@ def wait_function():
 def callback_function(future):
     print('Callback with the following result', future.result())
 
-with ThreadPoolExecutor(max_workers=8) as executor: #change max_workers to 2 and see the results
+with ThreadPoolExecutor(max_workers=32) as executor: #change max_workers to 2 and see the results
     future = executor.submit(wait_function)
     future.add_done_callback(callback_function)
     future2 = executor.submit(wait_function)
