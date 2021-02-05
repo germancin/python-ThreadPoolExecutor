@@ -3,7 +3,7 @@ import time
 import random
 
 def wait_function(x, y):
-    time.sleep(random.randint(5, 10))
+    time.sleep(random.randint(1, 5))
     print(f"Task( {x} multiply {y}, ) completed")
     return x * y
 
