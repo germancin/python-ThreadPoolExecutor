@@ -23,7 +23,7 @@ def wait_function():
     n = random.randint(99999, 999999)
     total_sum = fibo(n)
     # time.sleep(random.randint(1, 5))
-    print(f"Fibo   Execution time: {time.time() - start}   completed")
+    print(f"Fibo de: {n} ::::Execution time: {time.time() - start}   completed")
     return total_sum
 
 def callback_function(future):
