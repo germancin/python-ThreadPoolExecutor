@@ -20,7 +20,7 @@ def fibo(n):
 
 def wait_function():
     start = time.time()
-    n = random.randint(99999, 9999999)
+    n = random.randint(99999, 999999)
     total_sum = fibo(n)
     # time.sleep(random.randint(1, 5))
     print(f"Fibo de: {n} ::::Execution time: {time.time() - start}   completed")
