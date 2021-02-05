@@ -1,4 +1,5 @@
-from concurrent.futures import ProcessPoolExecutor
+#from concurrent.futures import ProcessPoolExecutor
+from concurrent.futures import ThreadPoolExecutor
 import time
 import random
 
@@ -10,7 +11,9 @@ def wait_function(x, y):
 def callback_function(future):
     print('Callback with the following result', future.result())
 
-with ProcessPoolExecutor(max_workers=1) as executor: #change max_workers to 2 and see the results
+#with ProcessPoolExecutor(max_workers=1) as executor: #change max_workers to 2 and see the results
+with ThreadPoolExecutor(max_workers=1) as executor: #change max_workers to 2 and see the results
+
     future = executor.submit(wait_function, 1, 1)
     future.add_done_callback(callback_function)
 
