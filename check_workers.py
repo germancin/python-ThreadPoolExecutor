@@ -5,7 +5,7 @@ def get_workers_count():
 	return multiprocessing.cpu_count()
 
 def main():
-	print(get_workers_count())
+	print("You have " + get_workers_count() + " amount of worker(s) available.")
 
 if __name__ == '__main__':
 	main()
