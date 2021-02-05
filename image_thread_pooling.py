@@ -38,6 +38,6 @@ with ThreadPoolExecutor(max_workers=32) as executor: #change max_workers to 2 an
     start = time.time()
     while True:
         if(future.done() and future2.done()):
-            print(future.result(), future2.result())
+            # print(future.result(), future2.result())
             break
     print(time.time() - start)
