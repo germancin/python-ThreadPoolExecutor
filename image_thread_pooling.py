@@ -27,7 +27,8 @@ def wait_function():
     return total_sum
 
 def callback_function(future):
-    print('Callback with the following result', future.result())
+    # print('Callback with the following result', future.result())
+    print('Callback with the following result')
 
 with ThreadPoolExecutor(max_workers=32) as executor: #change max_workers to 2 and see the results
     future = executor.submit(wait_function)
@@ -38,6 +39,6 @@ with ThreadPoolExecutor(max_workers=32) as executor: #change max_workers to 2 an
     start = time.time()
     while True:
         if(future.done() and future2.done()):
-            # print(future.result(), future2.result())
+            print(future.result(), future2.result())
             break
     print(time.time() - start)
