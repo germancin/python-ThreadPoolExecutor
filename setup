@@ -1,6 +1,10 @@
 pip3 install numpy as np
 pip3 install multiprocessing
 
+sleep 1
+git config --global user.email "elmaildegerman@gmail.com" &&
+git config --global user.name "germancin"
+
 echo "Checking workers..."
 sleep 2
 python3 check_workers.py
