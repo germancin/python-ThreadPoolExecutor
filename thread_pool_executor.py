@@ -5,7 +5,7 @@ import random
 
 def wait_function(x, y):
     start = time.time()
-    #time.sleep(random.randint(1, 5))
+    time.sleep(random.randint(1, 5))
     print(f"Task( multiply {x} times(*) {y}, ) Execution time: {time.time() - start} completed")
     return x * y
 
