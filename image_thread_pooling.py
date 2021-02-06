@@ -136,15 +136,17 @@ for root, sub_dirs, files in os.walk(images_target_path):
         imgs_paths.append(file_path)
 images_target_path = imgs_paths
 
-print(f"total images before chunk: {len(images_target_path)}")
+rr = images_target_path
 images_target_path = chunks(images_target_path, 10)  # 20 chunks de 10
 with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_workers to 2 and see the results
     for idx, image_target_chunk in enumerate(images_target_path):
         globals()[f'future{idx}'] = executor.submit(wait_function, image_target_chunk, images_target_path, new_imgs_path, images_subject)
         globals()[f'future{idx}'].add_done_callback(callback_function)
 
+    print(f"Glonals {globals()}")
     # while True:
         # if (future.done()):
             # print(future.result())
             # break
-print(f"TOTAL: {time.time() - start}")
+print(f"total images before chunk: {len(images_target_path)}")
+print(f"TOTAL: {time.time() - start} of {len(len(images_target_path))}")
