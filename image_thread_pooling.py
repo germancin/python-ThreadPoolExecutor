@@ -136,10 +136,11 @@ for im in images_target_path:
         new_images_target.append(im)
 
 target_imgs_count = len(new_images_target)
-all_images_target = chunks(new_images_target, 38)
+all_images_target = chunks(new_images_target, 5)
 
 # images_target_path = chunks(all_images_target, 10)  # 20 chunks de 10
 images_target_path = all_images_target
+
 with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_workers to 2 and see the results
     for idx, image_target_chunk in enumerate(images_target_path):
         globals()[f'future{idx}'] = executor.submit(wait_function, image_target_chunk, new_imgs_path, images_subject)
