@@ -141,8 +141,6 @@ with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_wor
     for idx, image_target_chunk in enumerate(images_target_path):
         globals()[f'future{idx}'] = executor.submit(wait_function, image_target_chunk, images_target_path, new_imgs_path, images_subject)
         globals()[f'future{idx}'].add_done_callback(callback_function)
-        avel = globals()[f'future{idx}']
-        print(avel)
 
     # while True:
         # if (future.done()):
