@@ -119,7 +119,7 @@ def chunks(imgs_target_path, n):
 
  # Init App #
 start = time.time()
-worker_count = 32
+worker_count = 40
 percentage = 0.50
 base_path = os.getcwd()
 img_subjects_path = os.path.join(base_path, "images_subject")
@@ -142,10 +142,10 @@ images_target_path = all_images_target
 
 with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_workers to 2 and see the results
     for idx, image_target_chunk in enumerate(images_target_path):
-        for image_target in image_target_chunk:
+        for index, image_target in enumerate(image_target_chunk):
             globals()[f'future{idx}'] = executor.submit(wait_function, image_target, new_imgs_path, images_subject)
             # globals()[f'future{idx}'].add_done_callback(callback_function)
-            print(f"GLOBLS { f'future{idx}' } - TTTT {image_target}")
+            print(f"GLOBLS { f'future{idx}' } - TTTT {image_target}-({index})")
 
     # while True:
     #     if ([f'future{idx}'].done()):
