@@ -136,7 +136,7 @@ for root, sub_dirs, files in os.walk(images_target_path):
         imgs_paths.append(file_path)
 images_target_path = imgs_paths
 
-print(f"total images before chunk: {images_target_path}")
+print(f"total images before chunk: {len(images_target_path)}")
 images_target_path = chunks(images_target_path, 10)  # 20 chunks de 10
 with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_workers to 2 and see the results
     for idx, image_target_chunk in enumerate(images_target_path):
