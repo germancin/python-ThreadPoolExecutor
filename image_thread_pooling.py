@@ -7,7 +7,7 @@ from os.path import isfile, join
 import cv2
 
 
-def wait_function(images_target_chunk, images_target, new_images_path, images_subject):
+def wait_function(images_target_chunk, new_images_path, images_subject):
     try:
         percentage = 0.50
         geo_portail = []
@@ -15,13 +15,12 @@ def wait_function(images_target_chunk, images_target, new_images_path, images_su
 
         for id_img, base_image in enumerate(images_subject):
             print(f"image subject {id_img} - {images_subject[id_img]}")
-
             # cv2.imread(base_image)
             base_image_original = os.path.basename(base_image)
             base_image = cv2.imread(base_image)
 
             for idxInt, fileD in enumerate(images_target_chunk):
-                # print(f"image target shunkc {idxInt} - {fileD}")
+                print(f"image target shunkc {idxInt} - {fileD}")
                 file_path = str(fileD)
                 if os.path.exists(file_path):
                     file_name = str(os.path.basename(fileD))
@@ -119,7 +118,7 @@ def chunks(imgs_target_path, n):
 
  # Init App #
 start = time.time()
-worker_count = 32
+worker_count = 1
 percentage = 0.50
 base_path = os.getcwd()
 img_subjects_path = os.path.join(base_path, "images_subject")
@@ -129,24 +128,27 @@ images_subject = [os.path.join(img_subjects_path, f) for f in listdir(img_subjec
 imgs_paths = []
 images_target_path = os.path.join(base_path, "images_target")
 images_target_path = os.path.abspath(images_target_path)
+images_subject = [os.path.join(img_subjects_path, f) for f in listdir(img_subjects_path) if isfile(join(img_subjects_path, f))]
+images_target_path = [os.path.join(images_target_path, f) for f in listdir(images_target_path) if isfile(join(images_target_path, f))]
+new_images_target = []
+for im in images_target_path:
+    if isfile(im) and os.path.exists(im):
+        new_images_target.append(im)
 
-for root, sub_dirs, files in os.walk(images_target_path):
-    for file in files:
-        file_path = os.path.join(root, file)
-        imgs_paths.append(file_path)
-images_target_path = imgs_paths
+target_imgs_count = len(new_images_target)
+all_images_target = chunks(new_images_target, 10)
 
-rr = images_target_path
-images_target_path = chunks(images_target_path, 10)  # 20 chunks de 10
+# images_target_path = chunks(all_images_target, 10)  # 20 chunks de 10
+images_target_path = all_images_target
 with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_workers to 2 and see the results
     for idx, image_target_chunk in enumerate(images_target_path):
-        globals()[f'future{idx}'] = executor.submit(wait_function, image_target_chunk, images_target_path, new_imgs_path, images_subject)
+        globals()[f'future{idx}'] = executor.submit(wait_function, image_target_chunk, new_imgs_path, images_subject)
         globals()[f'future{idx}'].add_done_callback(callback_function)
-        print(f"GLOBLS {globals()[f'future{idx}']}")
+        # print(f"GLOBLS {globals()[f'future{idx}']}")
 
-    while True:
-        if (globals()[f'future{idx}'].done()):
-            print(globals()[f'future{idx}'].result())
-            break
+    # while True:
+    #     if (globals()[f'future{idx}'].done()):
+    #         print(globals()[f'future{idx}'].result())
+    #         break
 
-print(f"TOTAL: {time.time() - start} of {len(rr)}")
+print(f"TOTAL: {time.time() - start} of {target_imgs_count} ")
