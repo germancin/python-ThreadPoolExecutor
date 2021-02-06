@@ -1,3 +1,7 @@
+apt-get update &&
+apt-get install ffmpeg libsm6 libxext6  -y &&
+
+sleep 1 &&
 pip3 install numpy as np &&
 pip3 install multiprocessing &&
 pip3 install time &&
@@ -7,10 +11,6 @@ pip3 install opencv-contrib-python &&
 sleep 1 &&
 git config --global user.email "elmaildegerman@gmail.com" &&
 git config --global user.name "germancin" &&
-
-sleep 1 &&
-apt-get update &&
-apt-get install ffmpeg libsm6 libxext6  -y &&
 
 echo "Checking workers..." &&
 sleep 2 &&
