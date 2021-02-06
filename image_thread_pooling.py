@@ -25,7 +25,7 @@ def wait_function(images_target_chunk, images_target, new_images_path, images_su
                 file_path = str(fileD)
                 if os.path.exists(file_path):
                     file_name = str(os.path.basename(fileD))
-                    # target_image_color = cv2.imread(file_path)
+                    target_image_color = cv2.imread(file_path)
                     target_image = cv2.imread(file_path, 0)
                     kp1, des1 = sift.detectAndCompute(base_image, None)
                     kp2, des2 = sift.detectAndCompute(target_image, None)
@@ -43,7 +43,7 @@ def wait_function(images_target_chunk, images_target, new_images_path, images_su
                             if base_image_original == "doble.png":
                                 if file_path not in geo_portail and len(matches) >= 1400 and len(good) >= 70:
                                     geo_portail.append(file_path)
-                                    cv2.imwrite(os.path.join(new_images_path, file_name), target_image)
+                                    cv2.imwrite(os.path.join(new_images_path, file_name), target_image_color)
                                     matched = True
                                     if idx > 0 and len(images_target_chunk) > 0:
                                         print(f"Saved: {base_image_original} => {file_name} current size chunk {len(images_target_chunk)} - {id_img}")
@@ -54,7 +54,7 @@ def wait_function(images_target_chunk, images_target, new_images_path, images_su
                             if base_image_original == "green.png":
                                 if file_path not in geo_portail and len(matches) >= 2500 and len(good) >= 120:
                                     geo_portail.append(file_path)
-                                    cv2.imwrite(os.path.join(new_images_path, file_name), target_image)
+                                    cv2.imwrite(os.path.join(new_images_path, file_name), target_image_color)
                                     matched = True
                                     if idx > 0 and len(images_target_chunk) > 0:
                                         print(f"Saved: {base_image_original} => {file_name} current size chunk {len(images_target_chunk)} - {id_img}")
@@ -65,7 +65,7 @@ def wait_function(images_target_chunk, images_target, new_images_path, images_su
                             if base_image_original == "icons.png":
                                 if file_path not in geo_portail and len(matches) >= 120 and len(good) >= 45:
                                     geo_portail.append(file_path)
-                                    cv2.imwrite(os.path.join(new_images_path, file_name), target_image)
+                                    cv2.imwrite(os.path.join(new_images_path, file_name), target_image_color)
                                     matched = True
                                     if idx > 0 and len(images_target_chunk) > 0:
                                         print(f"Saved: {base_image_original} => {file_name} current size chunk {len(images_target_chunk)} - {id_img}")
@@ -76,7 +76,7 @@ def wait_function(images_target_chunk, images_target, new_images_path, images_su
                             if base_image_original == "logo_cadastre.png":
                                 if file_path not in geo_portail and len(matches) >= 150 and len(good) >= 27:
                                     geo_portail.append(file_path)
-                                    cv2.imwrite(os.path.join(new_images_path, file_name), target_image)
+                                    cv2.imwrite(os.path.join(new_images_path, file_name), target_image_color)
                                     matched = True
                                     if idx > 0 and len(images_target_chunk) > 0:
                                         print(f"Saved: {base_image_original} => {file_name} current size chunk {len(images_target_chunk)} - {id_img}")
@@ -88,7 +88,7 @@ def wait_function(images_target_chunk, images_target, new_images_path, images_su
                                 if file_path not in geo_portail and len(matches) > 200 and len(good) >= 75:
                                     geo_portail.append(file_path)
                                     print(f"Save here: {os.path.join(new_images_path, file_name)}")
-                                    cv2.imwrite(os.path.join(new_images_path, file_name), target_image)
+                                    cv2.imwrite(os.path.join(new_images_path, file_name), target_image_color)
                                     matched = True
                                     if idx > 0 and len(images_target_chunk) > 0:
                                         print(f"Saved: {base_image_original} => {file_name} current size chunk {len(images_target_chunk)} - {id_img}")
