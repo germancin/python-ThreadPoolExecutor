@@ -62,8 +62,19 @@ def wait_function(images_target_chunk, images_target, new_images_path, images_su
                             #             print(f"{base_image_original}: after delete: {len(images_target_chunk)} - {id_img}")
                             #             break
 
-                            # if base_image_original == "icons.png":
-                            #     if file_path not in geo_portail and len(matches) >= 120 and len(good) >= 45:
+                            if base_image_original == "icons.png":
+                                if file_path not in geo_portail and len(matches) >= 120 and len(good) >= 45:
+                                    geo_portail.append(file_path)
+                                    cv2.imwrite(os.path.join(new_images_path, file_name), target_image)
+                                    matched = True
+                                    if idx > 0 and len(images_target_chunk) > 0:
+                                        print(f"Saved: {base_image_original} => {file_name} current size chunk {len(images_target_chunk)} - {id_img}")
+                                        del images_target_chunk[idxInt]
+                                        print(f"{base_image_original}: after delete: {len(images_target_chunk)} - {id_img}")
+                                        break
+
+                            # if base_image_original == "logo_cadastre.png":
+                            #     if file_path not in geo_portail and len(matches) >= 150 and len(good) >= 27:
                             #         geo_portail.append(file_path)
                             #         cv2.imwrite(os.path.join(new_images_path, file_name), target_image)
                             #         matched = True
@@ -72,28 +83,17 @@ def wait_function(images_target_chunk, images_target, new_images_path, images_su
                             #             del images_target_chunk[idxInt]
                             #             print(f"{base_image_original}: after delete: {len(images_target_chunk)} - {id_img}")
                             #             break
-
-                            if base_image_original == "logo_cadastre.png":
-                                if file_path not in geo_portail and len(matches) >= 150 and len(good) >= 27:
-                                    geo_portail.append(file_path)
-                                    cv2.imwrite(os.path.join(new_images_path, file_name), target_image)
-                                    matched = True
-                                    if idx > 0 and len(images_target_chunk) > 0:
-                                        print(f"Saved: {base_image_original} => {file_name} current size chunk {len(images_target_chunk)} - {id_img}")
-                                        del images_target_chunk[idxInt]
-                                        print(f"{base_image_original}: after delete: {len(images_target_chunk)} - {id_img}")
-                                        break
-
-                            if base_image_original == "logo.png":
-                                if file_path not in geo_portail and len(matches) > 200 and len(good) >= 75:
-                                    geo_portail.append(file_path)
-                                    cv2.imwrite(os.path.join(new_images_path, file_name), target_image)
-                                    matched = True
-                                    if idx > 0 and len(images_target_chunk) > 0:
-                                        print(f"Saved: {base_image_original} => {file_name} current size chunk {len(images_target_chunk)} - {id_img}")
-                                        del images_target_chunk[idxInt]
-                                        print(f"{base_image_original}: after delete: {len(images_target_chunk)} - {id_img}")
-                                        break
+                            #
+                            # if base_image_original == "logo.png":
+                            #     if file_path not in geo_portail and len(matches) > 200 and len(good) >= 75:
+                            #         geo_portail.append(file_path)
+                            #         cv2.imwrite(os.path.join(new_images_path, file_name), target_image)
+                            #         matched = True
+                            #         if idx > 0 and len(images_target_chunk) > 0:
+                            #             print(f"Saved: {base_image_original} => {file_name} current size chunk {len(images_target_chunk)} - {id_img}")
+                            #             del images_target_chunk[idxInt]
+                            #             print(f"{base_image_original}: after delete: {len(images_target_chunk)} - {id_img}")
+                            #             break
 
             print(f"{base_image_original}: acabo chunk : {len(images_target_chunk)} - {id_img}")
             print("GEO PORTAILS " + len(geo_portail))
