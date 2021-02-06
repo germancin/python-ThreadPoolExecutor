@@ -14,11 +14,13 @@ def wait_function(images_target_chunk, images_target, new_images_path, images_su
         sift = cv2.xfeatures2d.SIFT_create()
 
         for id_img, base_image in enumerate(images_subject):
+            print(f"image subject {id_img}")
             # cv2.imread(base_image)
             base_image_original = os.path.basename(base_image)
             base_image = cv2.imread(base_image)
 
             for idxInt, fileD in enumerate(images_target_chunk):
+                print(f"image target shunkc {idxInt}")
                 file_name = str(os.path.basename(fileD))
                 file_path = str(fileD)
                 if os.path.exists(file_path):
