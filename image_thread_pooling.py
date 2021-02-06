@@ -148,5 +148,5 @@ with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_wor
         # if (future.done()):
             # print(future.result())
             # break
-print(f"total images before chunk: {len(images_target_path)}")
-print(f"TOTAL: {time.time() - start} of {len(len(images_target_path))}")
+
+print(f"TOTAL: {time.time() - start} of {len(len(rr))}")
