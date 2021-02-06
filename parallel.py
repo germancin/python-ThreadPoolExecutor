@@ -15,13 +15,14 @@ def wait_function(single_image_target, new_images_path, images_subject):
         sift = cv2.xfeatures2d.SIFT_create()
 
         for id_img, base_image in enumerate(images_subject):
-            print(f"image subject {id_img} - {images_subject[id_img]}")
+            # print(f"image subject {id_img} - {images_subject[id_img]}")
             # cv2.imread(base_image)
             base_image_original = os.path.basename(base_image)
             base_image = cv2.imread(base_image, 0)
 
             for idxInt, fileD in enumerate([single_image_target]):
                 print(f"image target shunkc {idxInt} - {fileD}")
+                print(f"Image to processe {single_image_target} ")
                 file_path = str(fileD)
                 if os.path.exists(file_path):
                     file_name = str(os.path.basename(fileD))
@@ -132,11 +133,11 @@ images_subject = [os.path.join(img_subjects_path, f) for f in listdir(img_subjec
 images_target_path = [os.path.join(images_target_path, f) for f in listdir(images_target_path) if isfile(join(images_target_path, f))]
 new_images_target = []
 for im in images_target_path:
-    if isfile(im) and os.path.exists(im):
+    if os.path.exists(im):
         new_images_target.append(im)
 
 target_imgs_count = len(new_images_target)
-all_images_target = chunks(new_images_target, 5)
+all_images_target = chunks(new_images_target, 10)
 images_target_path = all_images_target
 
 with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_workers to 2 and see the results
@@ -144,7 +145,7 @@ with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_wor
         for image_target in image_target_chunk:
             globals()[f'future{idx}'] = executor.submit(wait_function, image_target, new_imgs_path, images_subject)
             # globals()[f'future{idx}'].add_done_callback(callback_function)
-            # print(f"GLOBLS { f'future{idx}' } - TTTT {image_target}")
+            print(f"GLOBLS { f'future{idx}' } - TTTT {image_target}")
 
     # while True:
     #     if ([f'future{idx}'].done()):
