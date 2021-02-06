@@ -26,27 +26,26 @@ def fibo(n):
 def wait_function(base_image, images_target, id_index):
     cv2.imread(base_image)
     sift = cv2.xfeatures2d.SIFT_create()
-    # print(f"::::{images_target}-{id_index}:::::")
+    base_image_original = os.path.basename(base_image)
+    base_image = cv2.imread(base_image)
     for idxInt, fileD in enumerate(images_target):
         file_name = str(os.path.basename(fileD))
         file_path = str(fileD)
         if os.path.exists(file_path):
-            # print(file_path, id_index)
             target_image_color = cv2.imread(file_path)
-            # target_image = cv2.imread(file_path, 0)
-            print(file_path, id_index)
-            # kp1, des1 = sift.detectAndCompute(base_image, None)
-            # kp2, des2 = sift.detectAndCompute(target_image, None)
-            # bf = cv2.BFMatcher()
-            # matches = bf.knnMatch(des1, des2, k=2)
-            # good = []
-            # min_goods = 700
-            # max_goods = 850
-
-            # for match1, match2 in matches:
-            #     if match1.distance < percentage * match2.distance:
-            #         good.append([match1])
-            #         print(len(good))
+            target_image = cv2.imread(file_path, 0)
+            kp1, des1 = sift.detectAndCompute(base_image, None)
+            kp2, des2 = sift.detectAndCompute(target_image, None)
+            bf = cv2.BFMatcher()
+            matches = bf.knnMatch(des1, des2, k=2)
+            good = []
+            min_goods = 700
+            max_goods = 850
+            print(f":::::::{base_image_original}:::::::")
+            for match1, match2 in matches:
+                if match1.distance < percentage * match2.distance:
+                    good.append([match1])
+                    print(f"{base_image_original}: {file_path} = {len(good)}")
 
     return True
 
