@@ -56,7 +56,7 @@ def callback_function(future):
 
  # Init App #
 start = time.time()
-worker_count = 1
+worker_count = 2
 percentage = 0.50
 base_path = os.getcwd()
 img_subjects_path = os.path.join(base_path, "images_subject")
