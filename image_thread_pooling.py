@@ -149,4 +149,4 @@ with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_wor
             # print(future.result())
             # break
 
-print(f"TOTAL: {time.time() - start} of {len(len(rr))}")
+print(f"TOTAL: {time.time() - start} of {len(rr)}")
