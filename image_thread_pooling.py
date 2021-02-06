@@ -37,7 +37,6 @@ def wait_function(images_target_chunk, images_target, new_images_path, images_su
                     for match1, match2 in matches:
                         if match1.distance < percentage * match2.distance:
                             good.append([match1])
-                            print(len(good) )
                             if base_image_original == "doble.png":
                                 if file_path not in geo_portail and len(matches) >= 1400 and len(good) >= 70:
                                     geo_portail.append(file_path)
@@ -93,7 +92,7 @@ def wait_function(images_target_chunk, images_target, new_images_path, images_su
                                         print(f"{base_image_original}: after delete: {len(images_target_chunk)} - {id_img}")
                                         break
 
-            return geo_portail, base_image_original
+            return geo_portail
 
     except cv2.error as e:
         print(e)
