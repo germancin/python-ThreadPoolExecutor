@@ -7,22 +7,6 @@ from os.path import isfile, join
 import cv2
 
 
-def fibo(n):
-    a = 0
-    b = 1
-    total_sum = 0
-    count = 1
-    # print("Fibonacci Series: ", end=" ")
-    while count <= n:
-        # print(total_sum, end=" ")
-        count += 1
-        a = b
-        b = total_sum
-        total_sum = a + b
-
-    return total_sum
-
-
 def wait_function(base_image, images_target, id_index):
     cv2.imread(base_image)
     sift = cv2.xfeatures2d.SIFT_create()
@@ -32,7 +16,7 @@ def wait_function(base_image, images_target, id_index):
         file_name = str(os.path.basename(fileD))
         file_path = str(fileD)
         if os.path.exists(file_path):
-            target_image_color = cv2.imread(file_path)
+            # target_image_color = cv2.imread(file_path)
             target_image = cv2.imread(file_path, 0)
             kp1, des1 = sift.detectAndCompute(base_image, None)
             kp2, des2 = sift.detectAndCompute(target_image, None)
@@ -53,9 +37,28 @@ def wait_function(base_image, images_target, id_index):
 def callback_function(future):
     print('Callback with the following result', future.result())
 
+def fibo(n):
+    a = 0
+    b = 1
+    total_sum = 0
+    count = 1
+    # print("Fibonacci Series: ", end=" ")
+    while count <= n:
+        # print(total_sum, end=" ")
+        count += 1
+        a = b
+        b = total_sum
+        total_sum = a + b
+
+    return total_sum
+
+
+
+
+
  # Init App #
 start = time.time()
-worker_count = 15
+worker_count = 32
 percentage = 0.50
 base_path = os.getcwd()
 img_subjects_path = os.path.join(base_path, "images_subject")
