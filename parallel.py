@@ -20,8 +20,6 @@ def wait_function(single_image_target, new_images_path, images_subject):
             base_image_original = os.path.basename(base_image)
             base_image = cv2.imread(base_image, 0)
 
-            print(single_image_target)
-            exit()
             for idxInt, fileD in enumerate([single_image_target]):
                 print(f"image target shunkc {idxInt} - {fileD}")
                 file_path = str(fileD)
