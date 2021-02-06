@@ -2,6 +2,11 @@ from concurrent.futures import ThreadPoolExecutor
 import time
 import os
 import random
+from os import listdir
+from os.path import isfile, join
+import cv2
+import sys
+
 
 def fibo(n):
     a = 0
@@ -18,32 +23,61 @@ def fibo(n):
 
     return total_sum
 
-def wait_function(exeId):
-    start = time.time()
-    n = random.randint(99999, 999999)
-    total_sum = fibo(n)
-    print(f"Fibo de: {n} ::::Execution time: {time.time() - start}   completed ({exeId})")
-    # return total_sum
+
+def wait_function(base_image, images_target, id_index):
+    cv2.imread(base_image)
+    sift = cv2.xfeatures2d.SIFT_create()
+    # print(f"::::{images_target}-{id_index}:::::")
+    for idxInt, fileD in enumerate(images_target):
+        file_name = str(os.path.basename(fileD))
+        file_path = str(fileD)
+        if os.path.exists(file_path):
+            # print(file_path, id_index)
+            target_image_color = cv2.imread(file_path)
+            # target_image = cv2.imread(file_path, 0)
+            print(file_path, id_index)
+            # kp1, des1 = sift.detectAndCompute(base_image, None)
+            # kp2, des2 = sift.detectAndCompute(target_image, None)
+            # bf = cv2.BFMatcher()
+            # matches = bf.knnMatch(des1, des2, k=2)
+            # good = []
+            # min_goods = 700
+            # max_goods = 850
+
+            # for match1, match2 in matches:
+            #     if match1.distance < percentage * match2.distance:
+            #         good.append([match1])
+            #         print(len(good))
+
+    return True
+
 
 def callback_function(future):
     print('Callback with the following result', future.result())
-    print('Callback with the following result')
 
+ # Init App #
+start = time.time()
+worker_count = 1
+percentage = 0.50
 base_path = os.getcwd()
-img_subjects_path = img = os.path.join(base_path, "images_subject")
-img_target_path = os.path.join(base_path, "images_target")
-cwd = os.getcwd()
-print(img_target_path, img_subjects_path)
+img_subjects_path = os.path.join(base_path, "images_subject")
+images_subject = [os.path.join(img_subjects_path, f) for f in listdir(img_subjects_path) if isfile(join(img_subjects_path, f))]
+# Images Target
+imgs_paths = []
+images_target_path = os.path.join(base_path, "images_target")
+images_target_path = os.path.abspath(images_target_path)
+for root, sub_dirs, files in os.walk(images_target_path):
+    for file in files:
+        file_path = os.path.join(root, file)
+        imgs_paths.append(file_path)
+images_target_path = imgs_paths
+with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_workers to 2 and see the results
+    for idx, image_subject in enumerate(images_subject):
+        future = executor.submit(wait_function, image_subject, images_target_path, idx)
+        # future.add_done_callback(callback_function)
 
-with ThreadPoolExecutor(max_workers=2) as executor: #change max_workers to 2 and see the results
-    future = executor.submit(wait_function, 'first')
-    future.add_done_callback(callback_function)
-    future2 = executor.submit(wait_function, 'second')
-    future2.add_done_callback(callback_function)
-
-    start = time.time()
-    while True:
-        if(future.done() and future2.done()):
-            # print(future.result(), future2.result())
-            break
-    print(time.time() - start)
+    # while True:
+        # if (future.done()):
+            # print(future.result())
+            # break
+print(time.time() - start)
