@@ -135,7 +135,7 @@ for im in images_target_path:
         new_images_target.append(im)
 
 target_imgs_count = len(new_images_target)
-all_images_target = chunks(new_images_target, 5)
+all_images_target = chunks(new_images_target, 50)
 
 # images_target_path = chunks(all_images_target, 10)  # 20 chunks de 10
 images_target_path = all_images_target
