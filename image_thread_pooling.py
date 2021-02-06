@@ -119,7 +119,7 @@ def chunks(imgs_target_path, n):
 
  # Init App #
 start = time.time()
-worker_count = 15
+worker_count = 25
 percentage = 0.50
 base_path = os.getcwd()
 img_subjects_path = os.path.join(base_path, "images_subject")
