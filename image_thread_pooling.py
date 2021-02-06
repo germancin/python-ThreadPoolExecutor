@@ -37,6 +37,7 @@ def wait_function(images_target_chunk, new_images_path, images_subject):
                     for match1, match2 in matches:
                         if match1.distance < percentage * match2.distance:
                             good.append([match1])
+
                             if base_image_original == "doble.png":
                                 if file_path not in geo_portail and len(matches) >= 1400 and len(good) >= 70:
                                     # geo_portail.append(file_path)
