@@ -28,11 +28,10 @@ def wait_function(base_image, images_target, new_images_path):
                 good = []
                 min_goods = 700
                 max_goods = 850
+                percentage = 0.65 if base_image_original == 'logo.png' else percentage
+                percentage = 0.65 if base_image_original == 'logo_cadastre.png' else percentage
 
                 for match1, match2 in matches:
-                    percentage = 0.65 if base_image_original == 'logo.png' else percentage
-                    percentage = 0.65 if base_image_original == 'logo_cadastre.png' else percentage
-
                     if match1.distance < percentage * match2.distance:
                         good.append([match1])
 
@@ -94,30 +93,14 @@ def wait_function(base_image, images_target, new_images_path):
 
 
 def callback_function(future):
-    print('Callback with the following result', future.result())
-
-def fibo(n):
-    a = 0
-    b = 1
-    total_sum = 0
-    count = 1
-    # print("Fibonacci Series: ", end=" ")
-    while count <= n:
-        # print(total_sum, end=" ")
-        count += 1
-        a = b
-        b = total_sum
-        total_sum = a + b
-
-    return total_sum
-
-
+    print(f"future:: {future.result()}")
+    return future.result()
 
 
 
  # Init App #
 start = time.time()
-worker_count = 8
+worker_count = 32
 percentage = 0.50
 base_path = os.getcwd()
 img_subjects_path = os.path.join(base_path, "images_subject")
@@ -132,13 +115,14 @@ for root, sub_dirs, files in os.walk(images_target_path):
         file_path = os.path.join(root, file)
         imgs_paths.append(file_path)
 images_target_path = imgs_paths
+
 with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_workers to 2 and see the results
     for idx, image_subject in enumerate(images_subject):
-        future = executor.submit(wait_function, image_subject, images_target_path, new_imgs_path)
-        future.add_done_callback(callback_function)
+        globals()[f'future{idx}'] = executor.submit(wait_function, image_subject, images_target_path, new_imgs_path)
+        globals()[f'future{idx}'].add_done_callback(callback_function)
 
     # while True:
         # if (future.done()):
             # print(future.result())
             # break
-print(time.time() - start)
+print(f"TOTAL: {time.time() - start}")
