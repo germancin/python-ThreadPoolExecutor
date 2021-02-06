@@ -5,7 +5,6 @@ import random
 from os import listdir
 from os.path import isfile, join
 import cv2
-import sys
 
 
 def fibo(n):
