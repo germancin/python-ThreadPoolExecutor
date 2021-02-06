@@ -14,16 +14,17 @@ def wait_function(images_target_chunk, images_target, new_images_path, images_su
         sift = cv2.xfeatures2d.SIFT_create()
 
         for id_img, base_image in enumerate(images_subject):
-            print(f"image subject {id_img}")
+            print(f"image subject {id_img} - {images_subject[id_img]}")
+
             # cv2.imread(base_image)
             base_image_original = os.path.basename(base_image)
             base_image = cv2.imread(base_image)
 
             for idxInt, fileD in enumerate(images_target_chunk):
-                print(f"image target shunkc {idxInt}")
-                file_name = str(os.path.basename(fileD))
+                print(f"image target shunkc {idxInt} - {fileD}")
                 file_path = str(fileD)
                 if os.path.exists(file_path):
+                    file_name = str(os.path.basename(fileD))
                     # target_image_color = cv2.imread(file_path)
                     target_image = cv2.imread(file_path, 0)
                     kp1, des1 = sift.detectAndCompute(base_image, None)
@@ -115,7 +116,7 @@ def chunks(imgs_target_path, n):
 
  # Init App #
 start = time.time()
-worker_count = 8
+worker_count = 1
 percentage = 0.50
 base_path = os.getcwd()
 img_subjects_path = os.path.join(base_path, "images_subject")
