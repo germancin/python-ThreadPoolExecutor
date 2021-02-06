@@ -145,8 +145,8 @@ with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_wor
         # print(f"GLOBLS {globals()[f'future{idx}']}")
 
     while True:
-        if (str(f"future{idx}").done()):
-            print(str(f"future{idx}").result())
+        if (future+idx.done()):
+            print(future+idx.result())
             break
 
 print(f"TOTAL: {time.time() - start} of {target_imgs_count} ")
