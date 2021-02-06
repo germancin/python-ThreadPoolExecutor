@@ -17,7 +17,7 @@ def wait_function(images_target_chunk, new_images_path, images_subject):
             print(f"image subject {id_img} - {images_subject[id_img]}")
             # cv2.imread(base_image)
             base_image_original = os.path.basename(base_image)
-            base_image = cv2.imread(base_image)
+            base_image = cv2.imread(base_image, 0)
 
             for idxInt, fileD in enumerate(images_target_chunk):
                 print(f"image target shunkc {idxInt} - {fileD}")
@@ -31,8 +31,6 @@ def wait_function(images_target_chunk, new_images_path, images_subject):
                     bf = cv2.BFMatcher()
                     matches = bf.knnMatch(des1, des2, k=2)
                     good = []
-                    min_goods = 700
-                    max_goods = 850
                     percentage = 0.65 if base_image_original == 'logo.png' else percentage
                     percentage = 0.65 if base_image_original == 'logo_cadastre.png' else percentage
 
@@ -41,7 +39,7 @@ def wait_function(images_target_chunk, new_images_path, images_subject):
                             good.append([match1])
                             if base_image_original == "doble.png":
                                 if file_path not in geo_portail and len(matches) >= 1400 and len(good) >= 70:
-                                    geo_portail.append(file_path)
+                                    # geo_portail.append(file_path)
                                     cv2.imwrite(os.path.join(new_images_path, file_name), target_image_color)
                                     matched = True
                                     if idx > 0 and len(images_target_chunk) > 0:
@@ -52,7 +50,7 @@ def wait_function(images_target_chunk, new_images_path, images_subject):
 
                             if base_image_original == "green.png":
                                 if file_path not in geo_portail and len(matches) >= 2500 and len(good) >= 120:
-                                    geo_portail.append(file_path)
+                                    # geo_portail.append(file_path)
                                     cv2.imwrite(os.path.join(new_images_path, file_name), target_image_color)
                                     matched = True
                                     if idx > 0 and len(images_target_chunk) > 0:
@@ -63,7 +61,7 @@ def wait_function(images_target_chunk, new_images_path, images_subject):
 
                             if base_image_original == "icons.png":
                                 if file_path not in geo_portail and len(matches) >= 120 and len(good) >= 45:
-                                    geo_portail.append(file_path)
+                                    # geo_portail.append(file_path)
                                     cv2.imwrite(os.path.join(new_images_path, file_name), target_image_color)
                                     matched = True
                                     if idx > 0 and len(images_target_chunk) > 0:
@@ -74,7 +72,7 @@ def wait_function(images_target_chunk, new_images_path, images_subject):
 
                             if base_image_original == "logo_cadastre.png":
                                 if file_path not in geo_portail and len(matches) >= 150 and len(good) >= 27:
-                                    geo_portail.append(file_path)
+                                    # geo_portail.append(file_path)
                                     cv2.imwrite(os.path.join(new_images_path, file_name), target_image_color)
                                     matched = True
                                     if idx > 0 and len(images_target_chunk) > 0:
@@ -85,7 +83,7 @@ def wait_function(images_target_chunk, new_images_path, images_subject):
 
                             if base_image_original == "logo.png":
                                 if file_path not in geo_portail and len(matches) > 200 and len(good) >= 75:
-                                    geo_portail.append(file_path)
+                                    # geo_portail.append(file_path)
                                     print(f"Save here: {os.path.join(new_images_path, file_name)}")
                                     cv2.imwrite(os.path.join(new_images_path, file_name), target_image_color)
                                     matched = True
@@ -118,7 +116,7 @@ def chunks(imgs_target_path, n):
 
  # Init App #
 start = time.time()
-worker_count = 32
+worker_count = 40
 percentage = 0.50
 base_path = os.getcwd()
 img_subjects_path = os.path.join(base_path, "images_subject")
@@ -144,12 +142,12 @@ images_target_path = all_images_target
 with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_workers to 2 and see the results
     for idx, image_target_chunk in enumerate(images_target_path):
         globals()[f'future{idx}'] = executor.submit(wait_function, image_target_chunk, new_imgs_path, images_subject)
-        globals()[f'future{idx}'].add_done_callback(callback_function)
+        # globals()[f'future{idx}'].add_done_callback(callback_function)
         # print(f"GLOBLS {globals()[f'future{idx}']}")
 
-    # while True:
-    #     if (globals()[f'future{idx}'].done()):
-    #         print(globals()[f'future{idx}'].result())
-    #         break
+    while True:
+        if (globals()[f'future{idx}'].done()):
+            print(globals()[f'future{idx}'].result())
+            break
 
 print(f"TOTAL: {time.time() - start} of {target_imgs_count} ")
