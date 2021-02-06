@@ -21,7 +21,7 @@ def wait_function(images_target_chunk, images_target, new_images_path, images_su
             base_image = cv2.imread(base_image)
 
             for idxInt, fileD in enumerate(images_target_chunk):
-                print(f"image target shunkc {idxInt} - {fileD}")
+                # print(f"image target shunkc {idxInt} - {fileD}")
                 file_path = str(fileD)
                 if os.path.exists(file_path):
                     file_name = str(os.path.basename(fileD))
