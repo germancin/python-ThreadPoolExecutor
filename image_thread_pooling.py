@@ -94,7 +94,8 @@ def wait_function(images_target_chunk, images_target, new_images_path, images_su
                                         print(f"{base_image_original}: after delete: {len(images_target_chunk)} - {id_img}")
                                         break
 
-            print(len(geo_portail))
+            print(f"{base_image_original}: acabo chunk : {len(images_target_chunk)} - {id_img}")
+            print("GEO PORTAILS " + len(geo_portail))
             return geo_portail
 
     except cv2.error as e:
