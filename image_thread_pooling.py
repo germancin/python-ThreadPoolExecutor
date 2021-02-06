@@ -117,7 +117,7 @@ def chunks(imgs_target_path, n):
 
  # Init App #
 start = time.time()
-worker_count = 33
+worker_count = 32
 percentage = 0.50
 base_path = os.getcwd()
 img_subjects_path = os.path.join(base_path, "images_subject")
@@ -135,13 +135,14 @@ for im in images_target_path:
         new_images_target.append(im)
 
 target_imgs_count = len(new_images_target)
-all_images_target = chunks(new_images_target, 50)
+all_images_target = chunks(new_images_target, 5)
 
 # images_target_path = chunks(all_images_target, 10)  # 20 chunks de 10
 images_target_path = all_images_target
 
 with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_workers to 2 and see the results
     for idx, image_target_chunk in enumerate(images_target_path):
+        print(f"future{idx}")
         globals()[f'future{idx}'] = executor.submit(wait_function, image_target_chunk, new_imgs_path, images_subject)
         # globals()[f'future{idx}'].add_done_callback(callback_function)
         # print(f"GLOBLS {globals()[f'future{idx}']}")
@@ -149,6 +150,6 @@ with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_wor
     while True:
         if (globals()[f'future{idx}'].done()):
             print(globals()[f'future{idx}'].result())
-            break
+            # break
 
 print(f"TOTAL: {time.time() - start} of {target_imgs_count} ")
