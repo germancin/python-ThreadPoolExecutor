@@ -8,9 +8,10 @@ sleep 1 &&
 git config --global user.email "elmaildegerman@gmail.com" &&
 git config --global user.name "germancin" &&
 
+sleep 1 &&
 apt-get update &&
-apt-get install ffmpeg libsm6 libxext6  -y
+apt-get install ffmpeg libsm6 libxext6  -y &&
 
-echo "Checking workers..."
-sleep 2
-python3 check_workers.py
+echo "Checking workers..." &&
+sleep 2 &&
+python3 check_workers.py 
