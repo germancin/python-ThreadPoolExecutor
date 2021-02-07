@@ -161,7 +161,6 @@ with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_wor
             # print(f"GLOBAL{f'future{idx}'} ----- {image_target}-({index}) --- {cont}")
             cont = cont + 1
 
-    cont_value = cont
     while True:
         for i in range(0, cont):
             var_future = globals()[f'future{i}']
@@ -170,7 +169,6 @@ with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_wor
             elif var_future.done():
                 print(f'future{cont}', ':::::DONE::::')
                 break
-        cont = cont_value
         break
 
 print(f"TOTAL: {time.time() - start} of {target_imgs_count} ")
