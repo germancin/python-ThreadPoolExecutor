@@ -132,8 +132,8 @@ start = time.time()
 ################################
 #
 ################################
-worker_count = multiprocessing.cpu_count()
-# worker_count = 37
+# worker_count = multiprocessing.cpu_count()
+worker_count = 32
 percentage = 0.50
 base_path = os.getcwd()
 img_subjects_path = os.path.join(base_path, "images_subject")
