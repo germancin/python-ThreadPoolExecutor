@@ -21,7 +21,7 @@ echo "Checking workers..."
 sleep 2
 python3 check_workers.py
 
-sleep1
+sleep 1
 echo "::::Available Commands::::"
 cp .bash_aliases ~/
 cat ~/.bash_aliases
