@@ -13,9 +13,10 @@ sleep 1
 git config --global user.email "elmaildegerman@gmail.com" &&
 git config --global user.name "germancin" &&
 
+sleep2
+pip3 install multiprocessing &&
+
 echo "Checking workers..." &&
 sleep 2 &&
 python3 check_workers.py 
-
-sleep2 
-pip3 install multiprocessing 
+ 
