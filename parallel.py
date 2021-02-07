@@ -29,7 +29,7 @@ def wait_function(single_image_target, new_images_path, images_subject):
                 # print(f"Image to processe {single_image_target} ")
                 file_path = str(fileD)
                 if os.path.exists(file_path):
-                    print(f"____file exist {True} ")
+                    # print(f"____file exist {True} ")
                     file_name = str(os.path.basename(fileD))
                     target_image_color = cv2.imread(file_path)
                     target_image = cv2.imread(file_path, 0)
