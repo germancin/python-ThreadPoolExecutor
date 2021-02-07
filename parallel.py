@@ -139,20 +139,20 @@ for im in images_target_path:
         new_images_target.append(im)
 
 target_imgs_count = len(new_images_target)
-all_images_target = chunks(new_images_target, 5)
+all_images_target = chunks(new_images_target, 1)
 images_target_path = all_images_target
 cont = 0
 with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_workers to 2 and see the results
     for idx, image_target_chunk in enumerate(images_target_path):
         for index, image_target in enumerate(image_target_chunk):
             globals()[f'future{idx}'] = executor.submit(wait_function, image_target, new_imgs_path, images_subject)
-            # globals()[f'future{idx}'].add_done_callback(callback_function)\
-            cont = cont + 1
+            # globals()[f'future{idx}'].add_done_callback(callback_function)
             print(f"GLOBAL{f'future{idx}'} ----- {image_target}-({index}) --- {cont}")
+            cont = cont + 1
 
-    # while True:
-    #     if ([f'future{idx}'].done()):
-    #         print([f'future{idx}'].result())
-    #         break
+    while True:
+        if f"future{idx}".done():
+            print(f'future{idx}'.result())
+            break
 
 print(f"TOTAL: {time.time() - start} of {target_imgs_count} ")
