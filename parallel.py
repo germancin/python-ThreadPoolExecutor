@@ -102,6 +102,10 @@ def wait_function(single_image_target, new_images_path, images_subject):
                                         del images_target_chunk[idxInt]
                                         print(f"{base_image_original}: after delete: {len(images_target_chunk)} - {id_img}")
                                         break
+
+                            if len(good) >= 200:
+                                break
+
                         break
         #     print(f"{base_image_original}: acabo chunk : {len(images_target_chunk)} - {id_img}")
         #
