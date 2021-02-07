@@ -13,6 +13,7 @@ def wait_function(single_image_target, new_images_path, images_subject):
         percentage = 0.50
         geo_portail = []
         sift = cv2.xfeatures2d.SIFT_create()
+        images_target_chunk = [single_image_target]
 
         for id_img, base_image in enumerate(images_subject):
             # print(f"image subject {id_img} - {images_subject[id_img]}")
