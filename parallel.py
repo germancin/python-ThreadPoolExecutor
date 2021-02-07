@@ -131,8 +131,8 @@ start = time.time()
 ################################
 #
 ################################
-# worker_count = multiprocessing.cpu_count()
-worker_count = 32
+worker_count = multiprocessing.cpu_count()
+# worker_count = 32
 percentage = 0.50
 base_path = os.getcwd()
 img_subjects_path = os.path.join(base_path, "images_subject")
@@ -157,13 +157,14 @@ with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_wor
     for idx, image_target_chunk in enumerate(images_target_path):
         for index, image_target in enumerate(image_target_chunk):
             globals()[f'future{idx}'] = executor.submit(wait_function, image_target, new_imgs_path, images_subject)
-            # globals()[f'future{idx}'].add_done_callback(callback_function)
+            globals()[f'future{idx}'].add_done_callback(callback_function)
             print(f"GLOBAL{f'future{idx}'} ----- {image_target}-({index}) --- {cont}")
             # cont = cont + 1
 
     while True:
-        if f"future{10}".done():
-            print(f'future{10}'.result(), ':::::DONE::::')
+        print(f'while true... future10' if f'future10'.running() else '')
+        if f'future10'.done():
+            print(f'future10'.result(), ':::::DONE::::')
             break
 
 print(f"TOTAL: {time.time() - start} of {target_imgs_count} ")
