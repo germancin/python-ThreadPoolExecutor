@@ -25,7 +25,7 @@ def wait_function(single_image_target, new_images_path, images_subject):
             base_image = cv2.imread(base_image, 0)
             print(f"__Supouse to check {single_image_target} ")
             for idxInt, fileD in enumerate([single_image_target]):
-                print(f"____Checking... Image Target {fileD} ")
+                # print(f"____Checking... Image Target {fileD} ")
                 # print(f"Image to processe {single_image_target} ")
                 file_path = str(fileD)
                 if os.path.exists(file_path):
@@ -46,7 +46,7 @@ def wait_function(single_image_target, new_images_path, images_subject):
                         if match1.distance < percentage * match2.distance:
                             good.append([match1])
                             if cont == 0:
-                                print(f"____found match {True} " )
+                                # print(f"____found match {True} " )
                                 cont = 1
                             if base_image_original == "doble.png":
                                 if file_path not in geo_portail and len(matches) >= 1400 and len(good) >= 70:
@@ -158,13 +158,19 @@ with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_wor
         for index, image_target in enumerate(image_target_chunk):
             globals()[f'future{idx}'] = executor.submit(wait_function, image_target, new_imgs_path, images_subject)
             # globals()[f'future{idx}'].add_done_callback(callback_function)
-            print(f"GLOBAL{f'future{idx}'} ----- {image_target}-({index}) --- {cont}")
+            # print(f"GLOBAL{f'future{idx}'} ----- {image_target}-({index}) --- {cont}")
             cont = cont + 1
 
     while True:
         print(f'while true... future')
-        if future10.done():
-            print(future10.result(), ':::::DONE::::')
-            break
+        exit()
+        for i in range(0, cont):
+            var_future = f'future{i}'
+            if var_future.running():
+                print(f'future{i} is running...')
+            if var_future.done():
+                print(var_future.result(), ':::::DONE::::')
+                break
+
 
 print(f"TOTAL: {time.time() - start} of {target_imgs_count} ")
