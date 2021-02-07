@@ -22,8 +22,6 @@ def wait_function(single_image_target, new_images_path, images_subject):
             base_image = cv2.imread(base_image, 0)
 
             for idxInt, fileD in enumerate(single_image_target):
-                print(f"image target shunkc {idxInt} - {fileD}")
-                print(f"Image to processe {single_image_target} ")
                 file_path = str(fileD)
                 if os.path.exists(file_path):
                     file_name = str(os.path.basename(fileD))
@@ -97,12 +95,6 @@ def wait_function(single_image_target, new_images_path, images_subject):
                                         print(f"{base_image_original}: after delete: {len(images_target_chunk)} - {id_img}")
                                         break
 
-        #     print(f"{base_image_original}: acabo chunk : {len(images_target_chunk)} - {id_img}")
-        #
-        # print(f"{base_image_original}: ACABO SUBJECT : {len(images_target_chunk)} - {images_subject[id_img]}")
-        # print(f"GEO PORTAILS {len(geo_portail)}")
-        # return geo_portail
-
     except cv2.error as e:
         print(e)
         return False
@@ -144,22 +136,7 @@ cont = 0
 
 for idx, image_target_chunk in enumerate(images_target_path):
     for index, image_target in enumerate(image_target_chunk):
-        time.sleep(1)
         print(':::::::::::runing::::::::::::' + image_target)
         wait_function(image_target, new_imgs_path, images_subject)
-
-# with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_workers to 2 and see the results
-#     for idx, image_target_chunk in enumerate(images_target_path):
-#         for index, image_target in enumerate(image_target_chunk):
-            # globals()[f'future{idx}'] = executor.submit(wait_function, image_target, new_imgs_path, images_subject)
-            # wait_function(image_target, new_imgs_path, images_subject)
-            # globals()[f'future{idx}'].add_done_callback(callback_function)\
-            # cont = cont + 1
-            # print(f"GLOBAL{f'future{idx}'} ----- {image_target}-({index}) --- {cont}")
-
-    # while True:
-    #     if ([f'future{idx}'].done()):
-    #         print([f'future{idx}'].result())
-    #         break
 
 print(f"TOTAL: {time.time() - start} of {target_imgs_count} ")
