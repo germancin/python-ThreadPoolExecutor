@@ -21,9 +21,9 @@ def wait_function(single_image_target, new_images_path, images_subject):
             base_image_original = os.path.basename(base_image)
             print(f":::::::::::::IMAGE SUBJECT:::::::::: {base_image_original}")
             base_image = cv2.imread(base_image, 0)
-
+            print(f"__Supouse to check {single_image_target} ")
             for idxInt, fileD in enumerate([single_image_target]):
-                print(f"_____Image Target {single_image_target} ")
+                print(f"____Checking... Image Target {fileD} ")
                 # print(f"Image to processe {single_image_target} ")
                 file_path = str(fileD)
                 if os.path.exists(file_path):
