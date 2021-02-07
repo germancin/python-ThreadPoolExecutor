@@ -144,7 +144,7 @@ cont = 0
 for idx, image_target_chunk in enumerate(images_target_path):
     for index, image_target in enumerate(image_target_chunk):
         time.sleep(1)
-        print('runing...' + image_target)
+        print(':::::::::::runing::::::::::::' + image_target)
         wait_function(image_target, new_imgs_path, images_subject)
 
 # with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_workers to 2 and see the results
