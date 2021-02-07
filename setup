@@ -1,7 +1,10 @@
 apt-get update &&
 apt-get install ffmpeg libsm6 libxext6  -y &&
+pip3 install gitpython &&
+pip3 install os-win &&
+pip install wheel &&
 
-sleep 1 &&
+sleep 1
 pip3 install numpy as np &&
 pip3 install opencv-python &&
 pip3 install opencv-contrib-python &&
