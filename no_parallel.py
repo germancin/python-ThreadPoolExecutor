@@ -13,14 +13,15 @@ def wait_function(single_image_target, new_images_path, images_subject):
         percentage = 0.50
         geo_portail = []
         sift = cv2.xfeatures2d.SIFT_create()
-
+        single_image_target = [single_image_target]
+        images_target_chunk = single_image_target
         for id_img, base_image in enumerate(images_subject):
             # print(f"image subject {id_img} - {images_subject[id_img]}")
             # cv2.imread(base_image)
             base_image_original = os.path.basename(base_image)
             base_image = cv2.imread(base_image, 0)
 
-            for idxInt, fileD in enumerate([single_image_target]):
+            for idxInt, fileD in enumerate(single_image_target):
                 print(f"image target shunkc {idxInt} - {fileD}")
                 print(f"Image to processe {single_image_target} ")
                 file_path = str(fileD)
