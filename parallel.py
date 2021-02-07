@@ -166,7 +166,7 @@ with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_wor
         for i in range(0, cont):
             var_future = globals()[f'future{i}']
             if var_future.running():
-                continue
+                print(f'future{i} is running')
             elif var_future.done():
                 print(f'future{cont}', ':::::DONE::::')
                 cont = cont - 1
