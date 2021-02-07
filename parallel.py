@@ -28,6 +28,7 @@ def wait_function(single_image_target, new_images_path, images_subject):
                 # print(f"Image to processe {single_image_target} ")
                 file_path = str(fileD)
                 if os.path.exists(file_path):
+                    print(f"____file exist {True} ")
                     file_name = str(os.path.basename(fileD))
                     target_image_color = cv2.imread(file_path)
                     target_image = cv2.imread(file_path, 0)
@@ -39,9 +40,11 @@ def wait_function(single_image_target, new_images_path, images_subject):
                     percentage = 0.65 if base_image_original == 'logo.png' else percentage
                     percentage = 0.65 if base_image_original == 'logo_cadastre.png' else percentage
 
+                    cont = 0
                     for match1, match2 in matches:
                         if match1.distance < percentage * match2.distance:
                             good.append([match1])
+                            print(f"____found match {True} " if cont == 0 else False)
 
                             if base_image_original == "doble.png":
                                 if file_path not in geo_portail and len(matches) >= 1400 and len(good) >= 70:
@@ -120,6 +123,9 @@ def chunks(imgs_target_path, n):
 
  # Init App #
 start = time.time()
+################################
+#
+################################
 worker_count = multiprocessing.cpu_count()
 # worker_count = 37
 percentage = 0.50
