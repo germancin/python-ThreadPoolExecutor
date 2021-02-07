@@ -87,7 +87,7 @@ def wait_function(single_image_target, new_images_path, images_subject):
                             if base_image_original == "logo.png":
                                 if file_path not in geo_portail and len(matches) > 200 and len(good) >= 75:
                                     # geo_portail.append(file_path)
-                                    print(f"Save here: {os.path.join(new_images_path, file_name)}")
+                                    # print(f"Save here: {os.path.join(new_images_path, file_name)}")
                                     cv2.imwrite(os.path.join(new_images_path, file_name), target_image_color)
                                     matched = True
                                     if idx > 0 and len(images_target_chunk) > 0:
@@ -118,7 +118,7 @@ def chunks(imgs_target_path, n):
  # Init App #
 start = time.time()
 worker_count = get_workers_count()
-# worker_count = 8
+# worker_count = 37
 percentage = 0.50
 base_path = os.getcwd()
 img_subjects_path = os.path.join(base_path, "images_subject")
