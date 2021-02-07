@@ -162,15 +162,15 @@ with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_wor
             cont = cont + 1
 
     while True:
-        print(f'while true... future')
-        exit()
+        print(cont)
         for i in range(0, cont):
-            var_future = f'future{i}'
+            var_future = globals()[f'future{i}']
             if var_future.running():
-                print(f'future{i} is running...')
-            if var_future.done():
+                continue
+            elif var_future.done():
                 print(var_future.result(), ':::::DONE::::')
-                break
+                cont = cont - 1
+                # break
 
 
 print(f"TOTAL: {time.time() - start} of {target_imgs_count} ")
