@@ -45,8 +45,9 @@ def wait_function(single_image_target, new_images_path, images_subject):
                     for match1, match2 in matches:
                         if match1.distance < percentage * match2.distance:
                             good.append([match1])
-                            print(f"____found match {True} " if cont == 0)
-                            cont = 1
+                            if cont == 0:
+                                print(f"____found match {True} " )
+                                cont = 1
                             if base_image_original == "doble.png":
                                 if file_path not in geo_portail and len(matches) >= 1400 and len(good) >= 70:
                                     # geo_portail.append(file_path)
