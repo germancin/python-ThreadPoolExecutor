@@ -169,5 +169,6 @@ with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_wor
             elif var_future.done():
                 print(f'future{cont}', ':::::DONE::::')
                 break
+        break
 
 print(f"TOTAL: {time.time() - start} of {target_imgs_count} ")
