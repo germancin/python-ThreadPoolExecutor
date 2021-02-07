@@ -106,7 +106,7 @@ def wait_function(single_image_target, new_images_path, images_subject):
         #
         # print(f"{base_image_original}: ACABO SUBJECT : {len(images_target_chunk)} - {images_subject[id_img]}")
         # print(f"GEO PORTAILS {len(geo_portail)}")
-        # return geo_portail
+        return True
 
     except cv2.error as e:
         print(e)
@@ -156,9 +156,9 @@ with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_wor
             print(f"GLOBAL{f'future{idx}'} ----- {image_target}-({index}) --- {cont}")
             cont = cont + 1
 
-    while True:
-        if f"future{idx}".done():
-            print(f'future{idx}'.result())
-            break
+    # while True:
+    #     if f"future{idx}".done():
+    #         print(f'future{idx}'.result())
+    #         break
 
 print(f"TOTAL: {time.time() - start} of {target_imgs_count} ")
