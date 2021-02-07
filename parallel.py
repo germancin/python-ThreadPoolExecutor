@@ -162,7 +162,7 @@ with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_wor
             cont = cont + 1
 
     while True:
-        print(f'while true... future10' if future10.running() else '')
+        print(f'while true... future')
         if future10.done():
             print(future10.result(), ':::::DONE::::')
             break
