@@ -20,10 +20,10 @@ def wait_function(single_image_target, new_images_path, images_subject):
             # print(f"image subject {id_img} - {images_subject[id_img]}")
             # cv2.imread(base_image)
             base_image_original = os.path.basename(base_image)
-            print(f"{str(threading.current_thread().name)}::IMAGE SUBJECT:: {base_image_original}")
-            print(f" ")
+            # print(f"{str(threading.current_thread().name)}::IMAGE SUBJECT:: {base_image_original}")
+            # print(f" ")
             base_image = cv2.imread(base_image, 0)
-            print(f"__Supouse to check {single_image_target} ")
+            # print(f"__Supouse to check {single_image_target} ")
             for idxInt, fileD in enumerate([single_image_target]):
                 # print(f"____Checking... Image Target {fileD} ")
                 # print(f"Image to processe {single_image_target} ")
@@ -111,6 +111,7 @@ def wait_function(single_image_target, new_images_path, images_subject):
         #
         # print(f"{base_image_original}: ACABO SUBJECT : {len(images_target_chunk)} - {images_subject[id_img]}")
         # print(f"GEO PORTAILS {len(geo_portail)}")
+        print('Done this Image')
         return True
 
     except ValueError as e:
