@@ -1,4 +1,4 @@
-alias clc='echo -en '\ec''
+alias hello-g='echo Hola Germancin! have a great programming today!'
 alias pp='python3 parallel.py'
 alias check_workers='python3 check_workers.py'
 alias check='python3 check_workers.py'
