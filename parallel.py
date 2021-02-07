@@ -6,6 +6,7 @@ from os import listdir
 from os.path import isfile, join
 import cv2
 import multiprocessing
+import threading
 
 # def wait_function(images_target_chunk, new_images_path, images_subject):
 def wait_function(single_image_target, new_images_path, images_subject):
@@ -19,7 +20,7 @@ def wait_function(single_image_target, new_images_path, images_subject):
             # print(f"image subject {id_img} - {images_subject[id_img]}")
             # cv2.imread(base_image)
             base_image_original = os.path.basename(base_image)
-            print(f":::::::::::::IMAGE SUBJECT:::::::::: {base_image_original}")
+            print(f"{str(threading.current_thread().name)}::IMAGE SUBJECT:: {base_image_original}")
             print(f" ")
             base_image = cv2.imread(base_image, 0)
             print(f"__Supouse to check {single_image_target} ")
@@ -153,8 +154,8 @@ with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_wor
         for index, image_target in enumerate(image_target_chunk):
             globals()[f'future{idx}'] = executor.submit(wait_function, image_target, new_imgs_path, images_subject)
             # globals()[f'future{idx}'].add_done_callback(callback_function)
-            print(f"GLOBAL{f'future{idx}'} ----- {image_target}-({index}) --- {cont}")
-            cont = cont + 1
+            # print(f"GLOBAL{f'future{idx}'} ----- {image_target}-({index}) --- {cont}")
+            # cont = cont + 1
 
     # while True:
     #     if f"future{idx}".done():
