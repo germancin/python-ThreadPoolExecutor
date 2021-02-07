@@ -117,7 +117,7 @@ def chunks(imgs_target_path, n):
 
  # Init App #
 start = time.time()
-worker_count = get_workers_count()
+worker_count = multiprocessing.cpu_count()
 # worker_count = 37
 percentage = 0.50
 base_path = os.getcwd()
