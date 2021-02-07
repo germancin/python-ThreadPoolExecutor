@@ -104,8 +104,9 @@ def wait_function(single_image_target, new_images_path, images_subject):
                                         break
 
                             if len(good) >= 125:
+                                print('::break Good')
                                 break
-                        print('break matche')
+                        print('break matche::')
                         break
         #     print(f"{base_image_original}: acabo chunk : {len(images_target_chunk)} - {id_img}")
         #
