@@ -18,10 +18,11 @@ def wait_function(single_image_target, new_images_path, images_subject):
             # print(f"image subject {id_img} - {images_subject[id_img]}")
             # cv2.imread(base_image)
             base_image_original = os.path.basename(base_image)
+            print(f":::::::::::::IMAGE SUBJECT:::::::::: {base_image_original}")
             base_image = cv2.imread(base_image, 0)
 
             for idxInt, fileD in enumerate([single_image_target]):
-                # print(f"image target shunkc {idxInt} - {fileD}")
+                print(f"_____Image Target {single_image_target} ")
                 # print(f"Image to processe {single_image_target} ")
                 file_path = str(fileD)
                 if os.path.exists(file_path):
