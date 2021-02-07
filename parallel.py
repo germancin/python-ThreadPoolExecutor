@@ -5,7 +5,7 @@ import random
 from os import listdir
 from os.path import isfile, join
 import cv2
-
+import multiprocessing
 
 # def wait_function(images_target_chunk, new_images_path, images_subject):
 def wait_function(single_image_target, new_images_path, images_subject):
@@ -106,8 +106,6 @@ def wait_function(single_image_target, new_images_path, images_subject):
         print(e)
         return False
 
-
-
 def callback_function(future):
     print(f"future it finshed a :: {future.result()}")
     return future.result()
@@ -119,7 +117,8 @@ def chunks(imgs_target_path, n):
 
  # Init App #
 start = time.time()
-worker_count = 40
+worker_count = get_workers_count()
+# worker_count = 8
 percentage = 0.50
 base_path = os.getcwd()
 img_subjects_path = os.path.join(base_path, "images_subject")
