@@ -49,7 +49,8 @@ def wait_function(single_image_target, new_images_path, images_subject):
                                     cv2.imwrite(os.path.join(new_images_path, file_name), target_image_color)
                                     matched = True
                                     if idx > 0 and len(images_target_chunk) > 0:
-                                        print(f"____Saved: {base_image_original} => {file_name} current size chunk {len(images_target_chunk)} - {id_img}")
+                                        print(f"Saved: {base_image_original} => {file_name} current size chunk {len(images_target_chunk)} - {id_img}")
+                                        del images_target_chunk[idxInt]
                                         print(f"{base_image_original}: after delete: {len(images_target_chunk)} - {id_img}")
                                         break
 
@@ -59,7 +60,8 @@ def wait_function(single_image_target, new_images_path, images_subject):
                                     cv2.imwrite(os.path.join(new_images_path, file_name), target_image_color)
                                     matched = True
                                     if idx > 0 and len(images_target_chunk) > 0:
-                                        print(f"____Saved: {base_image_original} => {file_name} current size chunk {len(images_target_chunk)} - {id_img}")
+                                        print(f"Saved: {base_image_original} => {file_name} current size chunk {len(images_target_chunk)} - {id_img}")
+                                        del images_target_chunk[idxInt]
                                         print(f"{base_image_original}: after delete: {len(images_target_chunk)} - {id_img}")
                                         break
 
@@ -69,7 +71,9 @@ def wait_function(single_image_target, new_images_path, images_subject):
                                     cv2.imwrite(os.path.join(new_images_path, file_name), target_image_color)
                                     matched = True
                                     if idx > 0 and len(images_target_chunk) > 0:
-                                        print(f"____Saved: {base_image_original} => {file_name} current size chunk {len(images_target_chunk)} - {id_img}")
+                                        print(f"Saved: {base_image_original} => {file_name} current size chunk {len(images_target_chunk)} - {id_img}")
+                                        del images_target_chunk[idxInt]
+                                        print(f"{base_image_original}: after delete: {len(images_target_chunk)} - {id_img}")
                                         break
 
                             if base_image_original == "logo_cadastre.png":
@@ -78,7 +82,9 @@ def wait_function(single_image_target, new_images_path, images_subject):
                                     cv2.imwrite(os.path.join(new_images_path, file_name), target_image_color)
                                     matched = True
                                     if idx > 0 and len(images_target_chunk) > 0:
-                                        print(f"____Saved: {base_image_original} => {file_name} current size chunk {len(images_target_chunk)} - {id_img}")
+                                        print(f"Saved: {base_image_original} => {file_name} current size chunk {len(images_target_chunk)} - {id_img}")
+                                        del images_target_chunk[idxInt]
+                                        print(f"{base_image_original}: after delete: {len(images_target_chunk)} - {id_img}")
                                         break
 
                             if base_image_original == "logo.png":
@@ -88,7 +94,9 @@ def wait_function(single_image_target, new_images_path, images_subject):
                                     cv2.imwrite(os.path.join(new_images_path, file_name), target_image_color)
                                     matched = True
                                     if idx > 0 and len(images_target_chunk) > 0:
-                                        print(f"____Saved: {base_image_original} => {file_name} current size chunk {len(images_target_chunk)} - {id_img}")
+                                        print(f"Saved: {base_image_original} => {file_name} current size chunk {len(images_target_chunk)} - {id_img}")
+                                        del images_target_chunk[idxInt]
+                                        print(f"{base_image_original}: after delete: {len(images_target_chunk)} - {id_img}")
                                         break
 
         #     print(f"{base_image_original}: acabo chunk : {len(images_target_chunk)} - {id_img}")
