@@ -46,7 +46,7 @@ def wait_function(single_image_target, new_images_path, images_subject):
                         if match1.distance < percentage * match2.distance:
                             good.append([match1])
                             print(f"____found match {True} " if cont == 0 else False)
-
+                            cont = 1
                             if base_image_original == "doble.png":
                                 if file_path not in geo_portail and len(matches) >= 1400 and len(good) >= 70:
                                     # geo_portail.append(file_path)
@@ -102,7 +102,7 @@ def wait_function(single_image_target, new_images_path, images_subject):
                                         del images_target_chunk[idxInt]
                                         print(f"{base_image_original}: after delete: {len(images_target_chunk)} - {id_img}")
                                         break
-
+                        break
         #     print(f"{base_image_original}: acabo chunk : {len(images_target_chunk)} - {id_img}")
         #
         # print(f"{base_image_original}: ACABO SUBJECT : {len(images_target_chunk)} - {images_subject[id_img]}")
