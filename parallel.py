@@ -158,12 +158,12 @@ with ThreadPoolExecutor(max_workers=worker_count) as executor:  # change max_wor
         for index, image_target in enumerate(image_target_chunk):
             globals()[f'future{idx}'] = executor.submit(wait_function, image_target, new_imgs_path, images_subject)
             # globals()[f'future{idx}'].add_done_callback(callback_function)
-            # print(f"GLOBAL{f'future{idx}'} ----- {image_target}-({index}) --- {cont}")
+            print(f"GLOBAL{f'future{idx}'} ----- {image_target}-({index}) --- {cont}")
             # cont = cont + 1
 
     while True:
-        if f"future{idx}".done():
-            print(f'future{idx}'.result(), ':::::DONE::::')
-            # break
+        if f"future{10}".done():
+            print(f'future{10}'.result(), ':::::DONE::::')
+            break
 
 print(f"TOTAL: {time.time() - start} of {target_imgs_count} ")
